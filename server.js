@@ -1,12 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+const cors = require("cors");
+const cookieParser = require("cookie-parser");
 
 dotenv.config();
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
+app.use(cookieParser());
 
 
 app.listen(5000, () => 
@@ -16,6 +23,7 @@ app.listen(5000, () =>
 //set up Routers
 
 app.use("/service", require("./routers/serviceRouter"));
+app.use("/auth", require("./routers/userRouter"));
 
 //connect to MongoDB
 
