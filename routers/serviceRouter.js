@@ -69,7 +69,7 @@ router.put("/:id", auth, async (req, res) => {
             return res.status(401).json({msg: "unauthorised"});
 
        originalService.name = name;
-       originalService.location = name;
+       originalService.location = location;
        originalService.service = service;
        originalService.price = price;
        originalService.link = link;
