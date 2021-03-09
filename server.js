@@ -24,6 +24,7 @@ app.listen(PORT, () =>
 
 app.use("/service", require("./routers/serviceRouter"));
 app.use("/auth", require("./routers/userRouter"));
+app.use("/search", require("./routers/searchRouter"));
 
 //connect to MongoDB
 
