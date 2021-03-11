@@ -11,4 +11,13 @@ router.get("/", async (req, res) => {
    
 });
 
+router.get("/:id", async (req, res) => {
+
+    await Service.find({_id: req.params.id})
+        .then(service => res.json(service))
+        .catch(err => res.status(400).json('Error: ' + err));
+
+});
+
+
 module.exports = router;
