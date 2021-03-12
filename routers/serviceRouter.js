@@ -2,11 +2,9 @@ const router = require("express").Router();
 const Service = require("../models/serviceModel");
 const auth = require("../middleware/auth");
 
-
 router.get("/", auth, async (req, res) => {
 
     try{
-        
         const services = await Service.find({user: req.user});
         res.json(services);
 
