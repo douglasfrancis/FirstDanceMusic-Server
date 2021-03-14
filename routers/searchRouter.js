@@ -43,25 +43,41 @@ router.post("/filter", async (req, res) => {
 
 router.post("/", async (req, res) => {
 
-    const email = {
-        name: req.body.name
-    };
+    const {name, email, number, date, artistName, service, sets, quote} = req.body;
+
+    if(!name || !email || !number || !date) {
+        return res.status(400).json({msg: "Please enter all fields"})
+    }; 
 
     nodeoutlook.sendEmail({
         auth: {
             user: process.env.OUTLOOK_EMAIL,
             pass: process.env.OUTLOOK_PASSWORD
         },
-        from: 'doug@musicgofer.co.uk',
+        from: "First Dance Music <doug@musicgofer.co.uk>",
         to: 'dougiefrancis@gmail.com',
         subject: 'FDM - New Booking Request',
-        text: `Name is ${email.name}`,
-        replyTo: 'test@gmail.com',
+        text: `We have received a new booking with the following details;
+
+        Bride Name is ${name}
+        Bride Email: ${email}
+        Bride Number is ${number}
+        Wedding Date is ${date}
+
+        Artist Name is ${artistName}
+        Service is ${service}
+        Number of sets is ${sets}
+        The quote given was £${quote}
+        `,
         
-        onError: (e) => console.log(e),
+    
+        onError: (e) => {
+            console.log(e),
+        res.status(500).json({msg: "We're sorry something has gone wrong. Please contact us directly at niel@musicgofer.co.uk"})},
+
         onSuccess: (i) => {
             console.log(i);
-            res.send("Message Sent Successfully!")}
+            res.json({msg: "Message Sent Successfully!"})}
     }
      
     );
