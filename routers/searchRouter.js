@@ -63,11 +63,13 @@ router.post("/", async (req, res) => {
         Bride Email: ${email}
         Bride Number is ${number}
         Wedding Date is ${date}
+        Wedding Venue is to be added
 
         Artist Name is ${artistName}
         Service is ${service}
         Number of sets is ${sets}
         The quote given was £${quote}
+        Artist will get paid £${(quote/115)*100}
         `,
         
     
