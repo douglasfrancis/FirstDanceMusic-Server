@@ -43,9 +43,9 @@ router.post("/filter", async (req, res) => {
 
 router.post("/", async (req, res) => {
 
-    const {name, email, number, date, artistName, service, sets, quote} = req.body;
+    const {name, email, number, date, venue, artistName, service, sets, quote} = req.body;
 
-    if(!name || !email || !number || !date) {
+    if(!name || !email || !number || !date || !venue) {
         return res.status(400).json({msg: "Please enter all fields"})
     }; 
 
@@ -63,7 +63,7 @@ router.post("/", async (req, res) => {
         Bride Email: ${email}
         Bride Number is ${number}
         Wedding Date is ${date}
-        Wedding Venue is to be added
+        Wedding Venue is ${venue}
 
         Artist Name is ${artistName}
         Service is ${service}
