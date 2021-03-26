@@ -9,7 +9,8 @@ router.get("/", async (req, res) => {
         await Service.find()
             .then(service => {
                return res.json(shuffle(service))})
-            .catch(err => res.status(400).json('Error: ' + err));
+            .catch(err => {
+                return res.status(400).json('Error: ' + err)});
    
 });
 
@@ -20,8 +21,8 @@ router.get("/:id", async (req, res) => {
             response => 
             {return res.json(response)}
             
-            )
-        .catch(err => res.status(400).json('Error: ' + err));
+            ) 
+        .catch(err => {return res.status(400).json('Error: ' + err)});
 
 });
 
@@ -31,12 +32,11 @@ router.post("/filter", async (req, res) => {
         return res.status(400).json({msg: "Please provide both service and location"})
     } else {
 
-    
-
    await Service.find({location: req.body.location, service: req.body.service})
         .then(profiles=> {
            return res.json(profiles)})
-        .catch(err => res.status(400).json('Error: ' + err));
+        .catch(err => {
+            return res.status(400).json('Error: ' + err)});
     }
 
 });

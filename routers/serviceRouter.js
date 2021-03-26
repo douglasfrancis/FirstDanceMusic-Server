@@ -6,10 +6,10 @@ router.get("/", auth, async (req, res) => {
 
     try{
         const services = await Service.find({user: req.user});
-        res.json(services);
+         res.json(services);
 
     } catch (err) {
-        res.status(500).send();
+        return res.status(500).send();
     }
    
 });
