@@ -67,9 +67,7 @@ router.post("/", async (req, res) => {
 
         Artist Name is ${artistName}
         Service is ${service}
-        Number of sets is ${sets}
-        The quote given was £${quote}
-        Artist will get paid £${(quote/115)*100}
+        
         `,
         
     
